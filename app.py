@@ -1,4 +1,6 @@
 # import markdown
+import os
+
 import markdown2
 import openai
 from flask import Flask, render_template, request
@@ -7,7 +9,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # Initialize OpenAI API Key
-openai.api_key = "sk-06OD-Ds2cqEhYDQsZtSHa9pOCVAg0ucJ6PgdwKjF6IT3BlbkFJiRyYp45tWPpAPFwX0aU7WRcKKJa7sO2EueeCQ7NpAA"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 @app.route("/")
@@ -27,7 +29,7 @@ def result():
         f"Suggest a balanced and nutritious food menu for a {age}-year-old {gender} weighing {weight} kg for {time}. "
         f"Format the response with clear sections: 'Menu', 'Ingredients', 'Instructions', and 'Estimated Calories'. "
         f"Use bullet points for ingredients and clearly numbered steps (1., 2., 3., etc.) for instructions in Markdown format."
-        f"ตอบเป็นภาษาไทยเท่านั้น"
+        # f"ตอบเป็นภาษาไทยเท่านั้น"
     )
 
     try:
@@ -57,10 +59,10 @@ def result():
     except Exception as e:
         formatted_food_idea = f"An error occurred while fetching suggestions: {e}"
 
-    if gender == "male":
-        gender = "ชาย"
-    else:
-        gender = "หญิง"
+    # if gender == "male":
+    #     gender = "ชาย"
+    # else:
+    #     gender = "หญิง"
 
     return render_template(
         "result.html",
