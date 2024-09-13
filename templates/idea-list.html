@@ -1,24 +1,33 @@
 <!-- /templates/idea-list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Food Ideas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h2>Food Ideas</h2>
-        <p>Here are some food ideas that match your criteria:</p>
-        <!-- This can be dynamically generated based on your backend implementation -->
-        <div class="food-ideas">
+{% extends "base.html" %}
+
+{% block title %}Food Ideas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Food Ideas</h2>
+    <p>Here are some food ideas that match your criteria:</p>
+    <div class="food-ideas">
+        {% if food_ideas %}
             <ul>
-                <li>Food Idea 1</li>
-                <li>Food Idea 2</li>
-                <li>Food Idea 3</li>
-                <!-- More ideas as needed -->
+                {% for idea in food_ideas %}
+                    <li>
+                        <h3>{{ idea.type_food }} for a {{ idea.age }}-year-old {{ idea.gender }}</h3>
+                        <p><strong>Weight:</strong> {{ idea.weight }} kg</p>
+                        <p><strong>Time:</strong> {{ idea.time }}</p>
+                        <p><strong>Response:</strong></p>
+                        <div>{{ idea.gpt_response | safe }}</div>
+                        {% if idea.img_url %}
+                            <img src="{{ idea.img_url }}" alt="Food Image" style="max-width: 200px; max-height: 200px;">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
-        </div>
+        {% else %}
+            <p>No food ideas available at the moment.</p>
+        {% endif %}
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

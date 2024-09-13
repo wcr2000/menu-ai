@@ -2,3 +2,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('JavaScript is connected and working!');
 });
+function showSpinner() {
+    document.getElementById('spinner').style.display = 'block';
+}

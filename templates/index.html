@@ -1,36 +1,38 @@
 <!-- /templates/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Food Menu Suggestion</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h2>Enter Your Details</h2>
-        <form action="/result" method="POST">
-            <label for="age">Age:</label>
-            <input type="number" name="age" id="age" required><br><br>
+{% extends "base.html" %}
 
-            <label for="weight">Weight (kg):</label>
-            <input type="number" name="weight" id="weight" required><br><br>
+{% block title %}Food Menu Suggestion{% endblock %}
 
-            <label for="sex">Sex:</label>
-            <select name="sex" id="sex">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select><br><br>
+{% block content %}
+<div class="container">
+    <h2>Enter Your Details</h2>
+    <form action="/result" method="POST" onsubmit="showSpinner()">
+        <label for="type_food">Type Food:</label>
+        <input type="text" name="type_food" id="type_food" required><br><br>
 
-            <label for="time">Meal Time:</label>
-            <select name="time" id="time">
-                <option value="morning">Morning</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-            </select><br><br>
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" required><br><br>
 
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" id="weight" required><br><br>
+
+        <label for="sex">Sex:</label>
+        <select name="sex" id="sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="time">Meal Time:</label>
+        <select name="time" id="time">
+            <option value="morning">Morning</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Loading Spinner -->
+    <div class="spinner" id="spinner">Loading... Please wait.</div>
+</div>
+{% endblock %}

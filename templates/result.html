@@ -1,19 +1,25 @@
 <!-- /templates/result.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Food Suggestion Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h2>Suggested Food for <br> age: {{ age }} || weight: {{ weight }} kg. || gender: {{ gender }} || time: {{ time }}</h2>
-        <div class="food-suggestion">
-            {{ food_idea|safe }}  <!-- The 'safe' filter allows HTML content to render correctly -->
+{% extends "base.html" %}
+
+{% block title %}Food Suggestion Result{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Suggested {{ type_food }} Food for <br> age: {{ age }} || weight: {{ weight }} kg || gender: {{ gender }} || time: {{ time }}</h2>
+    <div class="food-suggestion">
+        <!-- Display the generated image if the URL is available -->
+        {% if img %}
+        <div class="image-container">
+            <h3>Generated Image:</h3>
+            <img src="{{ img }}" alt="Generated Food Image" style="max-width: 50%; height: auto;">
         </div>
-        <a href="/">Home</a>
-        <a href="/idea-list">See more food ideas</a>
+        {% else %}
+        <p>No image generated.</p>
+        {% endif %}
+
+        {{ food_idea | safe }}
     </div>
-</body>
-</html>
+    <a href="/">Home</a>
+    <a href="/idea-list">See more food ideas</a>
+</div>
+{% endblock %}

@@ -69,3 +69,54 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* CSS to center the image */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Make the image a block element */
+    margin: 20px auto; /* Center the image horizontally */
+}
+
+.spinner {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #333;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex; /* Display items in a row */
+    justify-content: center; /* Center the items horizontally */
+    background-color: #f8f9fa; /* Light background color */
+    padding: 10px 0; /* Add some padding */
+    list-style: none; /* Remove default bullet points */
+    margin: 0; /* Remove default margin */
+}
+
+.navbar ul {
+    display: flex; /* Display list items in a row */
+    gap: 20px; /* Space between the list items */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.navbar li {
+    display: inline; /* Inline display for list items */
+}
+
+.navbar a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Link color */
+    font-weight: bold; /* Make links bold */
+    padding: 10px; /* Add padding around links */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.navbar a:hover {
+    color: #0056b3; /* Darker color on hover */
+}
