@@ -3,8 +3,12 @@ import os
 
 import markdown2
 import openai
+from dotenv import load_dotenv
 from flask import Flask, render_template, request
 
+# from image_create import image_create  # Import the function from create_image.py
+
+load_dotenv()
 # Initialize Flask app
 app = Flask(__name__)
 
