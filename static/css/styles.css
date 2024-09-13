@@ -1,0 +1,71 @@
+/* /static/css/styles.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2d7b2d;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.food-suggestion {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h3 {
+    color: #1e73be;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+ul, ol {
+    margin: 10px 0 20px 20px;
+    padding-left: 20px;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul li, ol li {
+    margin-bottom: 8px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
