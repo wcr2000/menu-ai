@@ -7,11 +7,12 @@ WORKDIR /usr/src/app
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
-# Install system dependencies required for mysqlclient
+# Install system dependencies required for mysqlclient and curl
 RUN apt-get update && apt-get install -y \
     gcc \
     default-libmysqlclient-dev \
     pkg-config \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip and install the dependencies
