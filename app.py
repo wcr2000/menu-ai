@@ -129,8 +129,8 @@ def result():
     )
 
 
-def get_food_suggestions():
-    """Fetch food suggestions from the database."""
+def get_food_suggestions(page=1, per_page=6):
+    """Fetch paginated food suggestions from the database."""
     try:
         # Connect to your MySQL database
         conn = MySQLdb.connect(
@@ -138,14 +138,17 @@ def get_food_suggestions():
         )
         cursor = conn.cursor()
 
-        # Fetch the latest food suggestions
+        # Calculate the offset based on the current page and items per page
+        offset = (page - 1) * per_page
+
+        # Fetch the food suggestions with LIMIT and OFFSET for pagination
         query = """
         SELECT age, weight, gender, time, type_food, gpt_response, img_url 
         FROM food_suggestions 
         ORDER BY created_at DESC 
-        LIMIT 10;  -- Adjust the limit as needed
+        LIMIT %s OFFSET %s;
         """
-        cursor.execute(query)
+        cursor.execute(query, (per_page, offset))
         suggestions = cursor.fetchall()
 
         # Close the cursor and connection
@@ -174,11 +177,15 @@ def get_food_suggestions():
 
 @app.route("/idea-list")
 def idea_list():
-    # Fetch data from the database
-    food_ideas = get_food_suggestions()
+    # Get the current page from the query string, default to 1
+    page = request.args.get("page", 1, type=int)
+    per_page = 6  # Number of items per page
 
-    # Render the template with the fetched data
-    return render_template("idea-list.html", food_ideas=food_ideas)
+    # Fetch paginated data from the database
+    food_ideas = get_food_suggestions(page=page, per_page=per_page)
+
+    # Render the template with the fetched data and the current page
+    return render_template("idea-list.html", food_ideas=food_ideas, current_page=page)
 
 
 # Add this route to your existing app.py file
